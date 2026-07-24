@@ -4,6 +4,12 @@ void main() {
   runApp(const MyApp());
 }
 
+class AppColors {
+  AppColors._();
+
+  static const Color primary = Color(0xFF146C43);
+}
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -13,13 +19,25 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Perfil',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF146C43)),
+        colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primary),
       ),
       home: Scaffold(
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: 1,
+          selectedItemColor: AppColors.primary,
+          unselectedItemColor: AppColors.primary,
+          items: const [
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.settings),
+              label: 'Configurações',
+            ),
+          ],
+        ),
         appBar: AppBar(
           elevation: 0,
           centerTitle: false,
-          backgroundColor: const Color(0xFF146C43),
+          backgroundColor: AppColors.primary,
           foregroundColor: Colors.white,
           leading: const Icon(Icons.arrow_back),
           title: const Text(
@@ -53,7 +71,7 @@ class MyApp extends StatelessWidget {
                 child: const Icon(
                   Icons.person,
                   size: 32,
-                  color: Color(0xFF146C43),
+                  color: AppColors.primary,
                 ),
               ),
               const SizedBox(height: 12),
@@ -122,7 +140,7 @@ class StatisticCard extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(icon, size: 24, color: const Color(0xFF146C43)),
+          Icon(icon, size: 24, color: AppColors.primary),
           const SizedBox(height: 4),
           Text(
             value,
